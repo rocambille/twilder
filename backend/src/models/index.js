@@ -29,10 +29,20 @@ pool.getConnection().catch(() => {
 
 const models = {};
 
-const ItemManager = require("./ItemManager");
+const TagManager = require("./TagManager");
 
-models.item = new ItemManager();
-models.item.setDatabase(pool);
+models.tag = new TagManager();
+models.tag.setDatabase(pool);
+
+const TwildManager = require("./TwildManager");
+
+models.twild = new TwildManager();
+models.twild.setDatabase(pool);
+
+const UserManager = require("./UserManager");
+
+models.user = new UserManager();
+models.user.setDatabase(pool);
 
 // bonus: use a proxy to personalize error message,
 // when asking for a non existing model

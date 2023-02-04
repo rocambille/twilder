@@ -1,10 +1,10 @@
 const models = require("../models");
 
 const browse = (req, res) => {
-  models.item
+  models.user
     .findAll()
     .then(([rows]) => {
-      res.send(rows);
+      res.json(rows);
     })
     .catch((err) => {
       console.error(err);
@@ -13,13 +13,13 @@ const browse = (req, res) => {
 };
 
 const read = (req, res) => {
-  models.item
+  models.user
     .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
         res.sendStatus(404);
       } else {
-        res.send(rows[0]);
+        res.json(rows[0]);
       }
     })
     .catch((err) => {
@@ -29,14 +29,14 @@ const read = (req, res) => {
 };
 
 const edit = (req, res) => {
-  const item = req.body;
+  const user = req.body;
 
   // TODO validations (length, format...)
 
-  item.id = parseInt(req.params.id, 10);
+  user.id = parseInt(req.params.id, 10);
 
-  models.item
-    .update(item)
+  models.user
+    .update(user)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -51,14 +51,14 @@ const edit = (req, res) => {
 };
 
 const add = (req, res) => {
-  const item = req.body;
+  const user = req.body;
 
   // TODO validations (length, format...)
 
-  models.item
-    .insert(item)
+  models.user
+    .insert(user)
     .then(([result]) => {
-      res.location(`/items/${result.insertId}`).sendStatus(201);
+      res.status(201).json({ id: result.insertId });
     })
     .catch((err) => {
       console.error(err);
@@ -67,7 +67,7 @@ const add = (req, res) => {
 };
 
 const destroy = (req, res) => {
-  models.item
+  models.user
     .delete(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {
@@ -82,10 +82,32 @@ const destroy = (req, res) => {
     });
 };
 
+const getByEmailWithPasswordAndPassToNext = (req, res, next) => {
+  const { email } = req.body;
+
+  models.user
+    .findByEmailWithPassword(email)
+    .then(([users]) => {
+      if (users[0] != null) {
+        [req.user] = users;
+
+        next();
+      } else {
+        res.sendStatus(401);
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+
+      res.status(500).send("Error retrieving data from database");
+    });
+};
+
 module.exports = {
   browse,
   read,
   edit,
   add,
   destroy,
+  getByEmailWithPasswordAndPassToNext,
 };

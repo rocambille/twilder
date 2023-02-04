@@ -1,17 +1,17 @@
 {
-  "name": "template-fullstack",
-  "version": "2.0.0",
-  "description": "project template for the React-Express-MySQL cursus in Wild Code School",
-  "homepage": "https://github.com/wildcodeschool/js-template-fullstack#readme",
+  "name": "twilder",
+  "version": "1.0.0",
+  "description": "MVP",
+  "homepage": "https://github.com/wildcodeschool/twilder#readme",
   "bugs": {
-    "url": "https://github.com/wildcodeschool/js-template-fullstack/issues"
+    "url": "https://github.com/wildcodeschool/twilder/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/wildcodeschool/js-template-fullstack.git"
+    "url": "git+https://github.com/wildcodeschool/twilder.git"
   },
   "config": {
-    "cli": "npm"
+    "cli": "pnpm"
   },
   "scripts": {
     "postinstall": "cross-env-shell \"husky install && cd ./frontend && $npm_package_config_cli install && cd ../backend && $npm_package_config_cli install\"",
@@ -23,7 +23,7 @@
     "fix": "cross-env-shell \"cd ./frontend && $npm_package_config_cli run fix && cd ../backend && $npm_package_config_cli run fix\""
   },
   "keywords": [],
-  "author": "Wild Code School",
+  "author": "rocambille",
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^7.6.0",

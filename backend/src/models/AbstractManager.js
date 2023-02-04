@@ -4,13 +4,20 @@ class AbstractManager {
   }
 
   find(id) {
-    return this.database.query(`select * from  ${this.table} where id = ?`, [
+    return this.database.query(`select * from ${this.table} where id = ?`, [
       id,
     ]);
   }
 
   findAll() {
-    return this.database.query(`select * from  ${this.table}`);
+    return this.database.query(`select * from ${this.table}`);
+  }
+
+  update({ id, ...fields }) {
+    return this.database.query(`update ${this.table} set ? where id = ?`, [
+      fields,
+      id,
+    ]);
   }
 
   delete(id) {
