@@ -1,21 +1,11 @@
 const AbstractManager = require("./AbstractManager");
 
 class UserManager extends AbstractManager {
-  visible = "id, email, created_at, updated_at, deleted_at";
-
   constructor() {
-    super({ table: "user" });
-  }
-
-  find(id) {
-    return this.database.query(
-      `select ${this.visible} from ${this.table} where id = ?`,
-      [id]
-    );
-  }
-
-  findAll() {
-    return this.database.query(`select ${this.visible} from ${this.table}`);
+    super({
+      table: "user",
+      visible: "id, email, created_at, updated_at, deleted_at",
+    });
   }
 
   findByEmailWithPassword(email) {

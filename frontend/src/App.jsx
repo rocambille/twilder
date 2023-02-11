@@ -1,16 +1,39 @@
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 
-import NavBar from "./components/NavBar";
+import home from "./pages/home";
+import login from "./pages/login";
+import register from "./pages/register";
+import twild from "./pages/twild";
 
 import "./App.css";
 
+const link = (page, text) => (
+  <li>
+    <NavLink to={page.path}>{text}</NavLink>
+  </li>
+);
+
 function App() {
   return (
-    <div className="App">
-      <NavBar />
-      <Outlet />
-    </div>
+    <>
+      <nav>
+        <ul>
+          {link(home, "home")}
+          {link(login, "login")}
+          {link(register, "register")}
+        </ul>
+      </nav>
+      <main>
+        <Outlet />
+      </main>
+    </>
   );
 }
 
-export default App;
+export default [
+  {
+    path: "/",
+    element: <App />,
+    children: [home, login, register, twild],
+  },
+];

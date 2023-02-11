@@ -1,16 +1,18 @@
 class AbstractManager {
-  constructor({ table }) {
+  constructor({ table, visible = "*" }) {
     this.table = table;
+    this.visible = visible;
   }
 
   find(id) {
-    return this.database.query(`select * from ${this.table} where id = ?`, [
-      id,
-    ]);
+    return this.database.query(
+      `select ${this.visible} from ${this.table} where id = ?`,
+      [id]
+    );
   }
 
   findAll() {
-    return this.database.query(`select * from ${this.table}`);
+    return this.database.query(`select ${this.visible} from ${this.table}`);
   }
 
   update({ id, ...fields }) {
