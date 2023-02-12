@@ -3,7 +3,7 @@ import { NavLink, Outlet } from "react-router-dom";
 import home from "./pages/home";
 import login from "./pages/login";
 import register from "./pages/register";
-import twild from "./pages/twild";
+import resource from "./pages/resource";
 
 import "./App.css";
 
@@ -34,6 +34,6 @@ export default [
   {
     path: "/",
     element: <App />,
-    children: [home, login, register, twild],
+    children: [home, login, register, resource],
   },
 ];

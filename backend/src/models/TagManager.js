@@ -1,6 +1,6 @@
 const AbstractManager = require("./AbstractManager");
 
-class TwildManager extends AbstractManager {
+class TagManager extends AbstractManager {
   constructor() {
     super({ table: "tag" });
   }
@@ -12,4 +12,4 @@ class TwildManager extends AbstractManager {
   }
 }
 
-module.exports = TwildManager;
+module.exports = TagManager;

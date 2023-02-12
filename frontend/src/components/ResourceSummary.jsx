@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 
-const TwildProps = PropTypes.shape({
-  url: PropTypes.string.isRequired,
+const ResourceProps = PropTypes.shape({
+  uri: PropTypes.string.isRequired,
   updated_at: PropTypes.string.isRequired,
 });
 
-export default function TwildSummary({ data }) {
+export default function ResourceSummary({ data }) {
   return (
     <article>
       <Header data={data} />
@@ -13,21 +13,21 @@ export default function TwildSummary({ data }) {
   );
 }
 
-TwildSummary.propTypes = {
-  data: TwildProps.isRequired,
+ResourceSummary.propTypes = {
+  data: ResourceProps.isRequired,
 };
 
 function Header({ data }) {
   return (
     <header>
-      <h1>{data.url}</h1>
+      <h1>{data.uri}</h1>
       <time dateTime={data.updated_at}>{data.updated_at}</time>
     </header>
   );
 }
 
 Header.propTypes = {
-  data: TwildProps.isRequired,
+  data: ResourceProps.isRequired,
 };
 
-TwildSummary.Header = Header;
+ResourceSummary.Header = Header;

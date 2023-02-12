@@ -29,15 +29,15 @@ pool.getConnection().catch(() => {
 
 const models = {};
 
+const ResourceManager = require("./ResourceManager");
+
+models.resource = new ResourceManager();
+models.resource.setDatabase(pool);
+
 const TagManager = require("./TagManager");
 
 models.tag = new TagManager();
 models.tag.setDatabase(pool);
-
-const TwildManager = require("./TwildManager");
-
-models.twild = new TwildManager();
-models.twild.setDatabase(pool);
 
 const UserManager = require("./UserManager");
 

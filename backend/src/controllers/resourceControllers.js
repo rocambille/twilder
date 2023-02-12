@@ -1,7 +1,7 @@
 const models = require("../models");
 
 const browse = (req, res) => {
-  models.twild
+  models.resource
     .findAll()
     .then(([rows]) => {
       res.json(rows);
@@ -13,7 +13,7 @@ const browse = (req, res) => {
 };
 
 const read = (req, res) => {
-  models.twild
+  models.resource
     .find(req.params.id)
     .then(([rows]) => {
       if (rows[0] == null) {
@@ -29,14 +29,14 @@ const read = (req, res) => {
 };
 
 const edit = (req, res) => {
-  const twild = req.body;
+  const resource = req.body;
 
   // TODO validations (length, format...)
 
-  twild.id = parseInt(req.params.id, 10);
+  resource.id = parseInt(req.params.id, 10);
 
-  models.twild
-    .update(twild)
+  models.resource
+    .update(resource)
     .then(([result]) => {
       if (result.affectedRows === 0) {
         res.sendStatus(404);
@@ -51,12 +51,12 @@ const edit = (req, res) => {
 };
 
 const add = (req, res) => {
-  const twild = req.body;
+  const resource = req.body;
 
   // TODO validations (length, format...)
 
-  models.twild
-    .insert(twild)
+  models.resource
+    .insert(resource)
     .then(([result]) => {
       res.status(201).json({ id: result.insertId });
     })
@@ -67,7 +67,7 @@ const add = (req, res) => {
 };
 
 const destroy = (req, res) => {
-  models.twild
+  models.resource
     .delete(req.params.id)
     .then(([result]) => {
       if (result.affectedRows === 0) {

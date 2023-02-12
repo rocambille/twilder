@@ -3,7 +3,7 @@ const express = require("express");
 const router = express.Router();
 
 const userControllers = require("./controllers/userControllers");
-const twildControllers = require("./controllers/twildControllers");
+const resourceControllers = require("./controllers/resourceControllers");
 const tagControllers = require("./controllers/tagControllers");
 
 const {
@@ -16,8 +16,8 @@ router.get("/users", userControllers.browse);
 router.get("/users/:id", userControllers.read);
 router.post("/users", hashPassword, userControllers.add);
 
-router.get("/twilds", twildControllers.browse);
-router.get("/twilds/:id", twildControllers.read);
+router.get("/resources", resourceControllers.browse);
+router.get("/resources/:id", resourceControllers.read);
 
 router.get("/tags", tagControllers.browse);
 router.get("/tags/:id", tagControllers.read);
@@ -33,9 +33,9 @@ router.use(verifyToken);
 router.put("/users/:id", hashPassword, userControllers.edit);
 router.delete("/users/:id", userControllers.destroy);
 
-router.put("/twilds/:id", twildControllers.edit);
-router.post("/twilds", twildControllers.add);
-router.delete("/twilds/:id", twildControllers.destroy);
+router.put("/resources/:id", resourceControllers.edit);
+router.post("/resources", resourceControllers.add);
+router.delete("/resources/:id", resourceControllers.destroy);
 
 router.put("/tags/:id", tagControllers.edit);
 router.delete("/tags/:id", tagControllers.destroy);

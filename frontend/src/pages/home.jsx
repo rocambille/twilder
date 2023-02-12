@@ -1,17 +1,17 @@
 import { Link, useLoaderData } from "react-router-dom";
-import TwildSummary from "../components/TwildSummary";
+import ResourceSummary from "../components/ResourceSummary";
 
 import api from "../services/api";
 
 function Home() {
-  const twilds = useLoaderData();
+  const resources = useLoaderData();
 
   return (
     <ul>
-      {twilds.map((twild) => (
-        <li key={twild.id}>
-          <Link to={`/twilds/${twild.id}`}>
-            <TwildSummary data={twild} />
+      {resources.map((resource) => (
+        <li key={resource.id}>
+          <Link to={`/resources/${resource.id}`}>
+            <ResourceSummary data={resource} />
           </Link>
         </li>
       ))}
@@ -23,7 +23,7 @@ export default {
   path: "/",
   element: <Home />,
   loader: async () => {
-    const { data } = await api.get("/twilds");
+    const { data } = await api.get("/resources");
 
     return data;
   },
