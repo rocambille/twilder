@@ -37,6 +37,8 @@ router.put("/resources/:id", resourceControllers.edit);
 router.post("/resources", resourceControllers.add);
 router.delete("/resources/:id", resourceControllers.destroy);
 
+router.post("/resources/:id/comments", resourceControllers.comment);
+
 router.put("/tags/:id", tagControllers.edit);
 router.delete("/tags/:id", tagControllers.destroy);
 

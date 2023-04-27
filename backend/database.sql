@@ -37,13 +37,13 @@ create table share(
 ) engine=InnoDB default charset=latin1;
 
 create table comment(
+  id int(11) unsigned primary key not null auto_increment,
   user_id int(11) unsigned not null,
   resource_id int(11) unsigned not null,
   content text not null,
   created_at datetime default current_timestamp,
   updated_at datetime default current_timestamp on update current_timestamp,
   deleted_at datetime default null,
-  primary key (user_id, resource_id),
   foreign key (user_id) references user(id) on update cascade,
   foreign key (resource_id) references user(id) on update cascade
 ) engine=InnoDB default charset=latin1;

@@ -39,6 +39,8 @@ export default {
 
     api.defaults.headers.authorization = `Bearer ${token}`;
 
-    return redirect(home.path);
+    const redirectUrl = new URL(request.url).searchParams.get("redirect");
+
+    return redirect(redirectUrl ?? home.path);
   },
 };

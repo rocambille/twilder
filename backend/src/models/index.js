@@ -29,6 +29,11 @@ pool.getConnection().catch(() => {
 
 const models = {};
 
+const CommentManager = require("./CommentManager");
+
+models.comment = new CommentManager();
+models.comment.setDatabase(pool);
+
 const ResourceManager = require("./ResourceManager");
 
 models.resource = new ResourceManager();

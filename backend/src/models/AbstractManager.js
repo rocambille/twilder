@@ -6,7 +6,7 @@ class AbstractManager {
 
   find(id) {
     return this.database.query(
-      `select ${this.visible} from ${this.table} where id = ?`,
+      `select ${this.visible} from ${this.table} where id = ? limit 1`,
       [id]
     );
   }
